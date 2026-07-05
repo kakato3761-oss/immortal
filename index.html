@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Если захочешь — я здесь</title>
+    <style>
+        /* Сброс и базовые стили */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #050510;
+            color: #e0e0e0;
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Звёздное небо на фоне */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Контейнер поверх фона */
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Цитата в начале */
+        .quote-block {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #ccc;
+            border-left: 3px solid #4a4a8a;
+            padding-left: 20px;
+            margin: 40px 0;
+        }
+
+        /* Музыка: панель управления */
+        .music-control {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 15px;
+            background: rgba(20, 20, 40, 0.6);
+            border-radius: 12px;
+            backdrop-filter: blur(6px);
+        }
+
+        button.music-btn {
+            padding: 10px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            background: #2a2a4a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        button.music-btn:hover {
+            background: #4a4a8a;
+        }
+
+        button.music-btn.active {
+            background: #5a5a9a;
+        }
+
+        /* Галерея/фото */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 30px 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* Лепестки/дождь (анимация) */
+        .petals-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            bottom: 100%;
+            width: 14px;
+            height: 14px;
+            background: rgba(255, 230, 230, 0.7);
+            border-radius: 50%;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateX(var(--dx, 0)) translateY(calc(100vh + 20px));
+                opacity: 0;
+            }
+        }
+
+        /* Подвал/финал */
+        .final-note {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 1.1rem;
+            color: #aaa;
+        }
+
+        /* Адаптив для мобильных */
+        @media (max-width: 600px) {
+            .page-wrapper {
+                padding: 20px 15px;
+            }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Фон: звёзды -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Анимация лепестков -->
+    <div class="petals-container" id="petals"></div>
+
+    <div class="page-wrapper">
+        <!-- Панель музыки -->
+      
+        <h1>Если захочешь — я здесь</h1>
+
+        <p class="quote-block">
+            Я не прошу тебя вернуться. Я просто хотел сказать то, что не успел.
+        </p>
+
+        <!-- Раздел: Спасибо -->
+        <section id="thanks">
+            <h2>Спасибо</h2>
+            <p>Спасибо за все хорошие моменты, которые у нас были. За смех, за тишину, за то, как мы понимали друг друга без слов. Я не хочу вспоминать упрёки — мне дороже именно это: то, что было светлым.</p>
+            <p>Даже если всё закончилось, эти моменты останутся со мной как что-то важное и настоящее. И за это я искренне благодарен.</p>
+        </section>
+
+        <!-- Раздел: Что я понял -->
+        <section id="what-i-learned">
+            <h2>Что я понял</h2>
+            <p>Я много думал о том, что пошло не так, и честно признаю свои ошибки. Иногда я был слишком резким, когда стоило просто выслушать. Иногда торопился с выводами, вместо того чтобы спросить: «Что ты чувствуешь?»</p>
+            <p>Сейчас я стараюсь быть внимательнее к словам и к паузам между ними. Хочу, чтобы в будущем рядом со мной людям было спокойно, а не тревожно. Это не попытка оправдаться — это то, что я действительно понял и стараюсь менять в себе.</p>
+        </section>
+
+        <!-- Раздел: Воспоминания -->
+        <section id="memories">
+            <h2>Воспоминания</h2>
+            <p>Эти моменты не обязаны быть идеальными, чтобы быть ценными. Иногда самое дорогое — это просто обычный день, который почему-то запомнился.</p>
+           
+        </section>
+
+        <!-- Раздел: Письмо -->
+        <section id="letter">
+            <h2>Письмо</h2>
+            <p>Если ты читаешь это — спасибо. Мне не нужно, чтобы ты отвечала прямо сейчас или вообще когда‑либо. Просто если однажды тебе станет важно знать, что кто‑то помнит и не держит обиды, вот я. Здесь. Без давления, без ожиданий.</p>
+            <p>Мне хочется, чтобы у тебя всё было хорошо. Пусть впереди будет много спокойных, тёплых дней. Пусть рядом будут люди, с которыми легко молчать и легко говорить.</p>
+        </section>
+
+        <!-- Финал -->
+        <div class="final-note">
+            Если однажды ты захочешь поговорить, я буду рад. Если нет — спасибо за всё.
+        </div>
+    </div>
+
+    <script>
+        // Генерация звёзд
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 120; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 2 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Анимация лепестков
+        const petalsContainer = document.getElementById('petals');
+        function createPetals() {
+            for (let i = 0; i < 6; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                petal.style.setProperty('--dx', (Math.random() * 100 - 50) + 'px');
+                petalsContainer.appendChild(petal);
+            }
+            setTimeout(createPetals, 300);
+        }
+        createPetals();
+
+        // Управление музыкой
+        const musicBtn = document.getElementById('musicBtn');
+        const bgMusic = document.getElementById('bgMusic');
+
+        musicBtn.addEventListener('click', () => {
+            if (!bgMusic) {
+                // Если аудио нет, просто меняем текст
+                if (musicBtn.textContent === 'Включить музыку') {
+                    musicBtn.textContent = 'Музыка включена (файла нет)';
+                    musicBtn.classList.add('active');
+                } else {
+                    musicBtn.textContent = 'Включить музыку';
+                    musicBtn.classList.remove('active');
+                }
+                return;
+            }
+
+            if (bgMusic.paused) {
+                bgMusic.play().catch(e => console.log('Автовоспроизведение заблокировано браузером'));
+                musicBtn.textContent = 'Выключить музыку';
+                musicBtn.classList.add('active');
+            } else {
+                bgMusic.pause();
+                musicBtn.textContent = 'Включить музыку';
+                musicBtn.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
